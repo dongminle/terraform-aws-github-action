@@ -4,10 +4,10 @@ variable "prefix" {
 
 variable "environment" {
   description = "Define infrastructure's environment"
-  type = string
-  default = "dev"  
+  type        = string
+  default     = "dev"
   validation {
-    condition = var.environment == "dev" || var.environment == "qa" || var.environment == "prod"
+    condition     = contains(["dev", "qa", "prod"], var.environment)
     error_message = "The environment value must be dev, qa, or prod"
   }
 }
