@@ -2,6 +2,16 @@ variable "prefix" {
   description = "This prefix will be included in the name of most resources."
 }
 
+variable "environment" {
+  description = "Define infrastructure's environment"
+  type = string
+  default = "dev"  
+  validation {
+    condition = var.environment == "dev" || var.environment == "qa" || var.environment == "prod"
+    error_message = "The environment value must be dev, qa, or prod"
+  }
+}
+
 variable "region" {
   description = "The region where the resources are created."
   default     = "ap-northeast-2"
